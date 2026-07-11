@@ -1,0 +1,134 @@
+/* ---- Glow text ---- */
+.text-glow-cyan {
+  color: #fff;
+  text-shadow: 0 0 6px #00f0ff, 0 0 22px rgba(0, 240, 255, 0.6);
+}
+.text-glow-magenta {
+  text-shadow: 0 0 6px #ff2d9e, 0 0 24px rgba(255, 45, 158, 0.55);
+}
+.gradient-text {
+  background: linear-gradient(90deg, #00f0ff 0%, #ff2d9e 50%, #8b5cf6 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 0 18px rgba(255, 45, 158, 0.25));
+}
+
+/* ---- Ambient anime-glow blobs ---- */
+.blob {
+  position: fixed;
+  border-radius: 9999px;
+  filter: blur(110px);
+  opacity: 0.35;
+  z-index: 0;
+  pointer-events: none;
+  animation: float 16s ease-in-out infinite;
+}
+.blob-magenta {
+  width: 32rem; height: 32rem;
+  background: #ff2d9e;
+  top: -8rem; left: -6rem;
+}
+.blob-cyan {
+  width: 28rem; height: 28rem;
+  background: #00f0ff;
+  top: 20rem; right: -10rem;
+  animation-delay: -5s;
+}
+.blob-violet {
+  width: 30rem; height: 30rem;
+  background: #8b5cf6;
+  bottom: -10rem; left: 20%;
+  animation-delay: -10s;
+}
+@keyframes float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(40px, -30px) scale(1.08); }
+  66% { transform: translate(-30px, 20px) scale(0.95); }
+}
+
+/* ---- Cards ---- */
+.card-anime {
+  background: linear-gradient(160deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015));
+  border: 1px solid rgba(255,255,255,0.08);
+  backdrop-filter: blur(6px);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+.card-anime:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255,45,158,0.45);
+  box-shadow: 0 12px 40px -10px rgba(255,45,158,0.25), 0 0 0 1px rgba(0,240,255,0.08);
+}
+
+/* ---- Tech badges ---- */
+.tech-pill {
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  transition: all 0.2s ease;
+}
+.tech-pill:hover {
+  border-color: rgba(0,240,255,0.5);
+  color: #00f0ff;
+  box-shadow: 0 0 16px rgba(0,240,255,0.25);
+}
+
+/* ---- Form ---- */
+.form-input {
+  width: 100%;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.form-input::placeholder { color: rgba(255,255,255,0.35); }
+.form-input:focus {
+  outline: none;
+  border-color: #00f0ff;
+  box-shadow: 0 0 0 3px rgba(0,240,255,0.15);
+}
+
+/* ---- Buttons ---- */
+.btn-anime {
+  position: relative;
+  overflow: hidden;
+}
+.btn-anime::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.35), transparent);
+  transform: translateX(-120%);
+  transition: transform 0.6s ease;
+}
+.btn-anime:hover::after {
+  transform: translateX(120%);
+}
+
+/* ---- Fade-in on load ---- */
+.fade-up {
+  animation: fadeUp 0.8s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ---- Dashboard preview placeholder ---- */
+.mockup-bar {
+  animation: barGrow 2.4s ease-in-out infinite;
+}
+@keyframes barGrow {
+  0%, 100% { height: 25%; opacity: 0.6; }
+  50% { height: 90%; opacity: 1; }
+}
+
+/* HTMX swap indicator */
+.htmx-indicator { opacity: 0; transition: opacity 0.15s ease; }
+.htmx-request.htmx-indicator,
+.htmx-request .htmx-indicator { opacity: 1; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { animation: spin 0.7s linear infinite; }

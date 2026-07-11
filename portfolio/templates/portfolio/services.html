@@ -1,0 +1,32 @@
+{% extends "portfolio/base.html" %}
+
+{% block title %}Services — Arlon{% endblock %}
+
+{% block content %}
+<section class="max-w-6xl mx-auto px-6 py-20">
+  <div class="text-center mb-14">
+    <h2 class="font-display font-bold text-3xl md:text-4xl">
+      What I <span class="text-glow-magenta">build</span>
+    </h2>
+    <p class="text-slate-400 mt-3">Full-stack Django systems tailored to real operations, not templates.</p>
+  </div>
+
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for service in services %}
+    <div class="card-anime rounded-2xl p-6">
+      <div class="text-3xl mb-4">{{ service.icon }}</div>
+      <h3 class="font-display font-bold text-lg mb-2">{{ service.title }}</h3>
+      <p class="text-slate-400 text-sm leading-relaxed">{{ service.description }}</p>
+    </div>
+    {% endfor %}
+  </div>
+
+  <div class="mt-10 rounded-2xl border border-white/10 bg-gradient-to-r from-magenta/10 via-violet/10 to-cyan/10 p-8 flex flex-col md:flex-row items-center gap-6 text-center md:text-left">
+    <div class="text-4xl">🤖</div>
+    <div>
+      <h3 class="font-display font-bold text-xl mb-1 text-glow-cyan">Every build is AI-Assisted</h3>
+      <p class="text-slate-400 text-sm leading-relaxed">All of the above is delivered with AI-accelerated development — faster iteration, tighter feedback loops, without cutting corners on quality.</p>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% load static %}
+<form
+  hx-post="{% url 'portfolio:contact_submit' %}"
+  hx-target="#contact-form-wrapper"
+  hx-swap="innerHTML"
+  class="space-y-5"
+>
+  {% csrf_token %}
+
+  {% if form.errors %}
+  <div class="rounded-lg border border-magenta/40 bg-magenta/10 px-4 py-3 text-sm text-magenta">
+    Please check the fields below.
+  </div>
+  {% endif %}
+
+  <div>
+    {{ form.name }}
+    {% if form.name.errors %}<p class="text-xs text-magenta mt-1">{{ form.name.errors.0 }}</p>{% endif %}
+  </div>
+  <div>
+    {{ form.email }}
+    {% if form.email.errors %}<p class="text-xs text-magenta mt-1">{{ form.email.errors.0 }}</p>{% endif %}
+  </div>
+  <div>
+    {{ form.project_type }}
+  </div>
+  <div>
+    {{ form.message }}
+    {% if form.message.errors %}<p class="text-xs text-magenta mt-1">{{ form.message.errors.0 }}</p>{% endif %}
+  </div>
+
+  <button
+    type="submit"
+    class="btn-anime w-full rounded-full px-6 py-3.5 font-bold bg-gradient-to-r from-cyan to-violet shadow-glow-sm hover:shadow-glow transition-shadow flex items-center justify-center gap-2"
+  >
+    <span>Send message</span>
+    <svg class="htmx-indicator spin h-4 w-4" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="9" stroke="white" stroke-width="3" stroke-opacity="0.25"/>
+      <path d="M21 12a9 9 0 0 0-9-9" stroke="white" stroke-width="3" stroke-linecap="round"/>
+    </svg>
+  </button>
+</form>
