@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from .forms import ContactForm
 from .models import Project, Service
 
 DEFAULT_SERVICES = [
