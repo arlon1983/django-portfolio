@@ -1,6 +1,7 @@
 from django.shortcuts import render
-from .forms import ContactForm
+
 from .models import Project, Service
+from .forms import ContactForm
 
 DEFAULT_SERVICES = [
     {'icon': '📊', 'title': 'CRM Systems', 'description': 'Lead pipelines, client history, and follow-up automation built around how your sales team actually works.'},
