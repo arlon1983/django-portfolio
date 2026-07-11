@@ -62,18 +62,4 @@ def stack(request):
 
 
 def contact(request):
-    return render(request, 'portfolio/contact.html', {
-        'form': ContactForm(),
-    })
-
-
-def contact_submit(request):
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return render(request, 'portfolio/partials/contact_success.html', {
-                'name': form.cleaned_data['name'],
-            })
-        return render(request, 'portfolio/partials/contact_form.html', {'form': form})
-    return render(request, 'portfolio/partials/contact_form.html', {'form': ContactForm()})
+    return render(request, 'portfolio/contact.html')

@@ -53,11 +53,51 @@
       <a href="{% url 'portfolio:stack' %}" class="hover:text-violet transition-colors {% if request.resolver_match.url_name == 'stack' %}text-violet{% endif %}">Stack</a>
       <a href="{% url 'portfolio:contact' %}" class="hover:text-cyan transition-colors {% if request.resolver_match.url_name == 'contact' %}text-cyan{% endif %}">Contact</a>
     </div>
-    <a href="{% url 'portfolio:contact' %}" class="rounded-full px-4 py-2 text-sm font-bold bg-gradient-to-r from-magenta to-violet shadow-glow-sm hover:shadow-glow transition-shadow">
+    <a href="{% url 'portfolio:contact' %}" class="hidden md:inline-block rounded-full px-4 py-2 text-sm font-bold bg-gradient-to-r from-magenta to-violet shadow-glow-sm hover:shadow-glow transition-shadow">
       Start a project
     </a>
+    <button id="nav-toggle" type="button" aria-label="Toggle menu" aria-expanded="false" class="md:hidden text-slate-200 p-2 -mr-2">
+      <svg id="nav-icon-open" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+      <svg id="nav-icon-close" xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+  <div id="nav-menu" class="hidden md:hidden flex-col gap-1 px-6 pb-4 text-sm font-semibold tracking-wide text-slate-300 border-t border-white/5">
+    <a href="{% url 'portfolio:services' %}" class="py-3 hover:text-cyan transition-colors {% if request.resolver_match.url_name == 'services' %}text-cyan{% endif %}">Services</a>
+    <a href="{% url 'portfolio:projects' %}" class="py-3 hover:text-magenta transition-colors {% if request.resolver_match.url_name == 'projects' %}text-magenta{% endif %}">Projects</a>
+    <a href="{% url 'portfolio:stack' %}" class="py-3 hover:text-violet transition-colors {% if request.resolver_match.url_name == 'stack' %}text-violet{% endif %}">Stack</a>
+    <a href="{% url 'portfolio:contact' %}" class="py-3 hover:text-cyan transition-colors {% if request.resolver_match.url_name == 'contact' %}text-cyan{% endif %}">Contact</a>
   </div>
 </nav>
+
+<script>
+  (function () {
+    var toggle = document.getElementById('nav-toggle');
+    var menu = document.getElementById('nav-menu');
+    var iconOpen = document.getElementById('nav-icon-open');
+    var iconClose = document.getElementById('nav-icon-close');
+    toggle.addEventListener('click', function () {
+      var isOpen = !menu.classList.contains('hidden');
+      menu.classList.toggle('hidden');
+      menu.classList.toggle('flex');
+      iconOpen.classList.toggle('hidden');
+      iconClose.classList.toggle('hidden');
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+    });
+    menu.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A') {
+        menu.classList.add('hidden');
+        menu.classList.remove('flex');
+        iconOpen.classList.remove('hidden');
+        iconClose.classList.add('hidden');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>
 
 <main class="relative z-10 pt-24">
   {% block content %}{% endblock %}
